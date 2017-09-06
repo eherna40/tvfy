@@ -1,0 +1,58 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TVify</title>
+    <link href="https://fonts.googleapis.com/css?family=Encode+Sans:400,700|Passion+One:400,700" rel="stylesheet">      
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script> 
+    <link rel="stylesheet" href="app.css">
+
+  </head>
+  <body>
+    <div id="app">
+      <header class="app-header">
+        <div class="container">
+          <div class="row">
+            <div class="col s9 logo">
+              <h3>TVify</h3>
+            </div>
+            <div class="col s3 channels">
+              <p>MY CHANNELS</p>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="app-container">
+        <div class="container">
+        <div class="row">
+          <div class="col s12 m9 col1">
+          <div id ="search" class="col s12 search">
+            <div class="col s3 list">Watchlist</div>
+            <div class="col s5 offset-s4">
+              <form class= "search-form">
+                <input id="icon_prefix" type="text" class="validate">
+                <button type="submit"><i class="material-icons">search</i></button>
+              </form>
+            </div>
+          </div>
+          <div class="col s12 load">
+            <div class="col s4 offset-s4 spinner">
+            </div>
+          </div>
+          <div id="watchlist" class="col s12 watchlist"></div>
+          </div>
+          <div class="col s3 col2 hide-on-small-only"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
