@@ -22,6 +22,9 @@
 
   </head>
   <body>
+    <div class="video-trailer">
+            <div class="close-trailer"><i class="material-icons">close</i></div>
+    </div>
     <header>
       <nav>
         <ul class="navbar">
@@ -31,19 +34,19 @@
           <li data-activities="airplay">      
             <i class="material-icons" >airplay</i>
           </li>
-          <li data-activities="trailer">      
+          <li class="disabled" id="trailer" data-activities="trailer">      
             <i class="material-icons" >play_arrow</i>
           </li>
           <li data-activities="refresh">      
             <i class="material-icons" >refresh</i>          
           </li>
-          <li data-activities="list">      
+          <li class="disabled" data-activities="list">      
             <i class="material-icons" >list</i>
           </li>
-          <li data-activities="favorites">      
+          <li class="disabled" data-activities="favorites">      
             <i class="material-icons" >whatshot</i>
           </li>
-          <li data-activities="back">      
+          <li id="back" data-activities="back" class="disabled">      
             <i class="material-icons" >arrow_back
 </i>
           </li>
@@ -68,7 +71,7 @@
                   <i class="material-icons">search</i>
                 </form>
             </div>
-            <div class="close"><i class="material-icons">close</i></div>`
+            <div class="close"><i class="material-icons">close</i></div>
 
                     </div>
 
@@ -76,7 +79,6 @@
     
           
           <div class="col s12 m9 l10 main">
-            <div class="shadow"></div>
             <div class="main-head col s12">
               <div class="col head-logo">
                 <h3>TViFY</h3>
@@ -112,7 +114,8 @@
               </div>
             </div>
             <div class="col s12 movie-view">
-             
+              <div class="shadow"></div>
+
             </div>
             <div class="main-watchlist col s12">
               <div class="watchlist-head">

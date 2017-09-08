@@ -4,6 +4,7 @@ $(function(){
     $('.main-watchlist').perfectScrollbar();          // Initialize scroll
     
     var tvShows =  $('#main').find('.watchlist')
+    tvShows.hide()
     var key='6459fcd631e69317f25758b82f77615d';
     var img_key = 'https://image.tmdb.org/t/p/w500'
     
@@ -28,6 +29,7 @@ $(function(){
     
     
     function renderShow(shows){
+      $('.load').fadeOut(1500)
         shows.forEach(function(show,i){
             col = template
                 .replace(':name:', show.title ? show.title : '')
@@ -38,10 +40,18 @@ $(function(){
                 .replace(':likes:', show.vote_count ? show.vote_count : '' )  
 
             var col = $(col)
-            tvShows.append(col)  
+            tvShows.append(col)
+          
+      
         })
-        $('.load').fadeOut();    
+      
+        tvShows.delay(1500).fadeIn(1000)
         $('.movie').click(function(){
+          $('#back').removeClass('disabled')
+          $('#trailer').removeClass('disabled')
+        $('.movie-view').hide()
+        $('.movie-view-list').remove();
+
         
         var templateMovie = `
             <div class="movie-view-list" data-id=":id:">
@@ -74,9 +84,6 @@ $(function(){
         </div>`
 
         let id = $(this).attr('data-id')
-        $('.main-watchlist').hide()
-        $('.head-info').hide();
-        $('.movie-view').fadeIn();
         $.ajax({
             "async": true,
             "crossDomain": true,
@@ -88,8 +95,7 @@ $(function(){
             .then(function(show){
                 var average = Math.round((show.vote_average * 5)/10)
                 var gener = show.genres;
-
-                $('.main').css('background-image', 'url(https://image.tmdb.org/t/p/w1280' + show.backdrop_path + ')')
+                $('.movie-view').css('background-image', 'url(https://image.tmdb.org/t/p/w1280' + show.backdrop_path + ')')
                 col = templateMovie
                     .replace(':title:', show.title ? show.title : '')
                     .replace(':id:', show.id ? show.id : '')
@@ -105,7 +111,8 @@ $(function(){
                     $('.geners ul').append(`<li>${gener.name}</li>`)
 
                 })
-            
+            $('.main-watchlist').fadeOut(1000)        
+            $('.movie-view').delay(1000).fadeIn(1500);
             $('.trailer-play').click(function(){
                 playTrailer()
             });
@@ -116,7 +123,8 @@ $(function(){
         function playTrailer(){
             let breakVideo = false
              var id = $('.movie-view-list').attr('data-id')
-             var videoTemplate =  `       <div class="video-responsive video-trailer">
+             var videoTemplate =  `       
+              <div class="video-responsive">
             <iframe width="560" height="315" src="https://www.youtube.com/embed/:video:?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
         </div>`
     $.ajax({
@@ -130,25 +138,30 @@ $(function(){
         })
             .then(function(show){
                 videos = show.results
-videos.forEach(function(a){
-    
-    if (a.site === "YouTube"){
-            if(a.type === "Trailer" && breakVideo === false){
-                console.log(a.key)
-                            col = videoTemplate
-                                .replace(':video:', a.key)
-                alert(a.type)
-                breakVideo = true
-                
-            
-            }
-        
-    }
-})
-            var col = $(col)
-            
-        console.log(show.results)
-                $('.movie-view').append(col)
+                videos.forEach(function(a){
+                if (a.site === "YouTube"){
+                  if(a.type === "Trailer" && breakVideo === false){
+                    console.log(a.key)
+                    col = videoTemplate
+                      .replace(':video:', a.key)
+                    breakVideo = true
+                  }  
+              }
+          })
+          var col = $(col)  
+          console.log(show.results)
+          $('.video-trailer').append(col)
+          $('.video-trailer').fadeIn(1500)
+      $('.close-trailer').click(function(){
+                  $('.video-responsive')
+                    .fadeOut(1000)
+        .delay(1000)
+        .remove()
+                  $('.video-trailer').fadeOut(1000)
+
+
+      })
+
 
     })
             
@@ -173,13 +186,14 @@ videos.forEach(function(a){
             .then(function(shows){
                 localStorage.shows = JSON.stringify(shows.results)
                 renderShow(shows.results);
-                tvShows.css('opacity', 1)
+
+              
             })
         }else{
             renderShow(JSON.parse(localStorage.shows))
+   
+          
         }    
-        $('.load').fadeOut();
-        tvShows.fadeIn(1500)        
     }
     
     
@@ -256,11 +270,14 @@ videos.forEach(function(a){
     $('.navbar li').click(function(e){
             
         if ($(this).attr('data-activities')=== 'back'){
+                    $('#back').addClass('disabled')
+                    $('#trailer').addClass('disabled')
+
             $('.main').css('background-image', 'none')
             $('.main').find('.movie-view-list').remove();
-            $('.movie-view').hide();        
+            $('.movie-view').hide();     
             $('.main-watchlist').fadeIn()
-            $('.head-info').FadeIn();
+            $('.head-info').fadeIn();
         }
         if ($(this).attr('data-activities')=== 'search'){
             if (enableMenu(this)){
@@ -279,7 +296,10 @@ videos.forEach(function(a){
     
         }
         $('.close').click(function closeSearch(){
-            $('.menu-section').fadeOut()
+          if($('.menu-section').css('display')=== 'block'){
+            $(this).fadeOut()
+          }
+            
     })
 
 })
