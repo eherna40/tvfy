@@ -18,10 +18,7 @@ header{
   position: fixed;
   width: 60px;
 }
-a#drop{
-  position: relative;
-  z-index: 999;
-}
+
 .main-head{
   padding: 0 2rem !important;
 }
