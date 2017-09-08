@@ -328,8 +328,6 @@ $(function(){
     }
   }
 
-
-
-    loadMovies()
+    
     loadUpcoming()
 })
