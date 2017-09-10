@@ -5,20 +5,18 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TVify</title>
-    <link href="https://fonts.googleapis.com/css?family=Encode+Sans:400,700|Passion+One:400,700" rel="stylesheet">      
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    
-        <script
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.8.0/css/perfect-scrollbar.css">
+
+    <link rel="stylesheet" href="app.css">
+
+    <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
 
      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.8.0/css/perfect-scrollbar.css">
-
-    <link rel="stylesheet" href="app.css">
 
   </head>
   <body>
@@ -28,7 +26,7 @@
     <header>
       <nav>
         <ul class="navbar">
-          <li data-activities="search">      
+          <li id='search-link' data-activities="search">      
             <i class="material-icons" >search</i>
           </li>
           <li data-activities="airplay">      
@@ -48,7 +46,7 @@
           </li>
           <li id="back" data-activities="back" class="disabled">      
             <i class="material-icons" >arrow_back
-</i>
+          </i>
           </li>
         </ul>
       </nav>
@@ -68,7 +66,9 @@
                         <div id="search" class="search col s6 offset-s3 valign-wrapper">
                 <form>
                   <input type="text" placeholder="Buscar Peli">
-                  <i class="material-icons">search</i>
+                  <button type="submit" name="btn">
+                    <i class="material-icons">search</i>
+                  </button>
                 </form>
             </div>
             <div class="close"><i class="material-icons">close</i></div>
